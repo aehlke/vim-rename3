@@ -24,7 +24,7 @@ function! Rename(name, bang)
     silent! exec "saveas" . a:bang . " " . fnameescape(l:newname)
     if v:errmsg =~# '^$\|^E329'
         if expand("%:p") !=# l:curfile && filewritable(expand("%:p"))
-            silent exec "bwipe! " . l:curfile
+            silent exec "bwipe! " . fnameescape(l:curfile)
             if delete(l:curfile)
                 echoerr "Could not delete " . l:curfile
             endif
