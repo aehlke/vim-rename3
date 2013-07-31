@@ -21,10 +21,10 @@ function! Rename(name, bang)
     let l:curfilepath = expand("%:p:h")
     let l:newname = l:curfilepath . "/" . a:name
     let v:errmsg = ""
-    silent! exe "saveas" . a:bang . " " . l:newname
+    silent! exec "saveas" . a:bang . " " . l:newname
     if v:errmsg =~# '^$\|^E329'
         if expand("%:p") !=# l:curfile && filewritable(expand("%:p"))
-            silent exe "bwipe! " . l:curfile
+            silent exec "bwipe! " . l:curfile
             if delete(l:curfile)
                 echoerr "Could not delete " . l:curfile
             endif
