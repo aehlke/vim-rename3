@@ -21,7 +21,7 @@ function! Rename(name, bang)
     let l:curfilepath = expand("%:p:h")
     let l:newname = l:curfilepath . "/" . a:name
     let v:errmsg = ""
-    silent! exec "saveas" . a:bang . " " . l:newname
+    silent! exec "saveas" . a:bang . " " . fnameescape(l:newname)
     if v:errmsg =~# '^$\|^E329'
         if expand("%:p") !=# l:curfile && filewritable(expand("%:p"))
             silent exec "bwipe! " . l:curfile
